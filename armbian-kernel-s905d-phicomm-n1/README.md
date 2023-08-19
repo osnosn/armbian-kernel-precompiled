@@ -27,12 +27,29 @@
    wifi/BT 芯片是 BCM/CYW43455（实际上是 Broadcomm 芯，和树莓派一样）  
 8. 编译指令：`make -j4 bindeb-pkg` （-j4 完全利用了 n1 的4核，不加这参数只会利用1核，bindeb-pkg 用于编译完成后打包成 deb 安装包）  
    耗时约6小时。  
-9. 编译完成后，在内核源代码目录的上一层，生成3个deb，
-   只安装 header 和 image 即可，  
+9. 编译完成后，在内核源代码目录的上一层，生成3个deb，  
+   只安装 header 和 image 即可，，  
    需将内核目录 arch/arm64/boot 下的 Image ，重命名为 zImage 并拷贝到 /boot 下，覆盖原 zImage，
    arch/arm64/boot/dts/amlogic 下的 meson-gxl-s905d-phicomm-n1.dtb，拷贝到/boot/dtb 目录并覆盖原文件  
 
-RAR 文件内容:   
+## armbina更换内核
+* 按需备份原内核 /boot/zImage, /boot/uInitrd, /boot/uEnv.ini, /boot/dtb/meson-gxl-s905d-phicomm-n1.dtb
+* 解压 RAR 文件。
+* 安装 header 和 image。
+  ```
+  dpkg -i linux-headers-5.15.126+_5.15.126+-4_arm64.deb
+  dpkg -i linux-image-5.15.126+_5.15.126+-4_arm64.deb
+  ```
+* 把 zImage 拷贝到 /boot/目录中，覆盖原 zImage。
+* /boot/uInitrd 已经重新生成，不用理会。
+* 把 meson-gxl-s905d-phicomm-n1.dtb，拷贝到/boot/dtb 目录并覆盖原文件。
+* 检查 /boot/uEnv.ini 中，dtb 的路径正确的指向 meson-gxl-s905d-phicomm-n1.dtb。
+* 执行 sync 保证缓存写入磁盘。
+* reboot 启动新内核。
+* 如果启动失败，用U盘启动，恢复备份的四个文件，到 /boot/ 对应位置，重启，即可**恢复**。
+
+
+## RAR 文件内容:   
 ```
 sha256:
 3e0920a601c3c42106d8727d4d47df6aa599946f30511564e7a1ae4922d61dd3  N1_Kernel_5.15.126+.rar
