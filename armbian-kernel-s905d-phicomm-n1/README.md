@@ -2,29 +2,31 @@
 1. 俄罗斯 balbes150 的 armbian 5.77 默认已配备编译工具，但，需要安装 libncurses-dev 用于 menuconfig，安装 zstd 用于  
    生成 initrd.img 的时候使用 zstd 压缩协议，获得更好的压缩效果，如果没有 zstd，安装程序会退而用 gzip 压缩 initrd.img  
 2. 从 github.com/ophub 的 kernel_stable 处获取 5.15.126 内核成品，解压 boot-5.15.126-ophub.tar.gz 获得 config-5.15.126-ophub，作为编译的配置模板  
-3. 从github.com/unifreq/linux-5.15.y 处，git clone https://github.com/unifreq/linux-5.15.y.git，获取内核源代码，  
-  * git log 得到：  
-    ```
-    commit c78b6d21e2a7a5adf17bf21f71fca97059d580a5 (HEAD -> main, origin/main, origin/HEAD)
-    Author: uniqfreq <flippy@sina.com>
-    Date:   Sun Aug 13 21:55:10 2023 +0800
-    
-        up to 5.15.126
-    
-    commit 34a39eae0865e62de24d89682cea386ecdb8bfab
-    Author: uniqfreq <flippy@sina.com>
-    Date:   Wed Aug 9 16:52:16 2023 +0800
-    
-        up to 5.15.125
-    ```
-    第1行 commit c78b6d21e2a7a5adf17bf21f71fca97059d580a5 即 5.15.126 的 commit id   
-  * git checkout c78b6d21e2a7a5adf17bf21f71fca97059d580a5 取出 5.15.126 源代码  
+3. 从github.com/unifreq/linux-5.15.y 处，git clone https://github.com/unifreq/linux-5.15.y.git ，获取内核源代码，
+
+   * git log 得到：  
+     ```
+     commit c78b6d21e2a7a5adf17bf21f71fca97059d580a5 (HEAD -> main, origin/main, origin/HEAD)
+     Author: uniqfreq <flippy@sina.com>
+     Date:   Sun Aug 13 21:55:10 2023 +0800
+     
+         up to 5.15.126
+     
+     commit 34a39eae0865e62de24d89682cea386ecdb8bfab
+     Author: uniqfreq <flippy@sina.com>
+     Date:   Wed Aug 9 16:52:16 2023 +0800
+     
+         up to 5.15.125
+     ```
+     第1行 commit c78b6d21e2a7a5adf17bf21f71fca97059d580a5 即 5.15.126 的 commit id   
+   * git checkout c78b6d21e2a7a5adf17bf21f71fca97059d580a5 取出 5.15.126 源代码  
 4. 将第2步得到的配置文件 config 拷贝至内核根目录 5.15.y 下并更名为.config，执行 make menuconfig 进行必要的定制  
 5. N1的千兆网卡芯片是 RTL8111F，小心不要移除以太网卡分类下的 STMicroelectronics devices；wifi/BT 芯片是 BCM/CYW43455（实际上是 Broadcomm 芯，和树莓派一样）  
 6. 编译指令：make -j4 bindeb-pkg （-j4 完全利用了 n1 的4核，不加这参数只会利用1核，bindeb-pkg 用于编译完成后打包成 deb 安装包）  
    耗时约6小时。  
 7. 编译完成后，在内核源代码目录的上一层，生成3个deb，只安装 header 和 image 即可，需将内核目录 arch/arm64/boot 下的 Image ，重命名为 zImage 并拷贝到 /boot 下，覆盖原 zImage，arch/arm64/boot/dts/amlogic 下的 meson-gxl-s905d-phicomm-n1.dtb，拷贝到/boot/dtb 目录并覆盖原文件  
 
+RAR 文件内容:   
 ```
 UNRAR 6.21 freeware      Copyright (c) 1993-2023 Alexander Roshal
 
