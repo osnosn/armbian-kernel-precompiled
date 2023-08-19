@@ -32,7 +32,7 @@
    需将内核目录 arch/arm64/boot 下的 Image ，重命名为 zImage 并拷贝到 /boot 下，覆盖原 zImage，
    arch/arm64/boot/dts/amlogic 下的 meson-gxl-s905d-phicomm-n1.dtb，拷贝到/boot/dtb 目录并覆盖原文件  
 
-## armbina更换内核
+## armbian更换内核
 * 按需备份原内核 /boot/zImage, /boot/uInitrd, /boot/uEnv.ini, /boot/dtb/meson-gxl-s905d-phicomm-n1.dtb
 * 解压 RAR 文件。
 * 安装 header 和 image。
