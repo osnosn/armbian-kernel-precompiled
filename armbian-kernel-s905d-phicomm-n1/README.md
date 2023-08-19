@@ -34,6 +34,9 @@
 
 RAR 文件内容:   
 ```
+sha256:
+3e0920a601c3c42106d8727d4d47df6aa599946f30511564e7a1ae4922d61dd3  N1_Kernel_5.15.126+.rar
+
 UNRAR 6.21 freeware      Copyright (c) 1993-2023 Alexander Roshal
 
 Archive: N1_Kernel_5.15.126+.rar
