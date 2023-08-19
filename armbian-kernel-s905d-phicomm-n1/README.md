@@ -23,7 +23,7 @@
      第1行 commit c78b6d21e2a7a5adf17bf21f71fca97059d580a5 即 5.15.126 的 commit id   
    * `git checkout c78b6d21e2a7a5adf17bf21f71fca97059d580a5` 取出 5.15.126 源代码  
 6. 将第2步得到的配置文件 config 拷贝至内核根目录 5.15.y 下并更名为.config，执行 make menuconfig 进行必要的定制  
-7. N1的千兆网卡芯片是 RTL8111F，小心不要移除以太网卡分类下的 STMicroelectronics devices；
+7. N1的千兆网卡芯片是 RTL8111F，小心不要移除以太网卡分类下的 STMicroelectronics devices；  
    wifi/BT 芯片是 BCM/CYW43455（实际上是 Broadcomm 芯，和树莓派一样）  
 8. 编译指令：`make -j4 bindeb-pkg` （-j4 完全利用了 n1 的4核，不加这参数只会利用1核，bindeb-pkg 用于编译完成后打包成 deb 安装包）  
    耗时约6小时。  
