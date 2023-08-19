@@ -2,7 +2,7 @@
 1. 俄罗斯 balbes150 的 armbian 5.77 默认已配备编译工具，但，需要安装 libncurses-dev 用于 menuconfig，  
    安装 zstd 用于生成 initrd.img 的时候使用 zstd 压缩协议，获得更好的压缩效果，  
    如果没有 zstd，安装程序会退而用 gzip 压缩 initrd.img  
-3. 从 github.com/ophub 的 kernel_stable 处获取 5.15.126 内核成品，  
+3. 从 [github.com/ophub/kernel/releases](https://github.com/ophub/kernel/releases) 的 [kernel_stable](https://github.com/ophub/kernel/releases/tag/kernel_stable) 处获取 5.15.126 内核成品，  
    解压 boot-5.15.126-ophub.tar.gz 获得 config-5.15.126-ophub，作为编译的配置模板  
 5. 从 github.com/unifreq/linux-5.15.y 处，`git clone https://github.com/unifreq/linux-5.15.y.git` ，获取内核源代码，
 
