@@ -40,8 +40,9 @@
   dpkg -i linux-headers-5.15.126+_5.15.126+-4_arm64.deb
   dpkg -i linux-image-5.15.126+_5.15.126+-4_arm64.deb
   ```
-* 把 zImage 拷贝到 /boot/目录中，覆盖原 zImage。
-* /boot/uInitrd 已经重新生成，不用理会。
+* /boot/uImage 无用，可以删除。  
+* 把 zImage 拷贝到 /boot/目录中，覆盖原 zImage。  
+* /boot/uInitrd 已经重新生成，不用理会。  
 * 把 meson-gxl-s905d-phicomm-n1.dtb，拷贝到/boot/dtb 目录并覆盖原文件。
 * 检查 /boot/uEnv.ini 中，dtb 的路径正确的指向 meson-gxl-s905d-phicomm-n1.dtb。
 * 执行 sync 保证缓存写入磁盘。
